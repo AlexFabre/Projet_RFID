@@ -1,5 +1,5 @@
 # Projet RFID
-Poubelle connectée
+Poubelle connectée en Python
 
 ## Descritpion
 
