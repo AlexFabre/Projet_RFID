@@ -8,6 +8,7 @@
 #include <SPI.h>
 #include <Adafruit_ILI9341.h>
 #include "TouchScreen.h"
+#include <Fonts/FreeMonoBoldOblique12pt7b.h>
 
 // These are the four touchscreen analog pins
 #define YP A2  // must be an analog pin, use "An" notation!
@@ -59,7 +60,7 @@ TouchScreen ts = TouchScreen(XP, YP, XM, YM, 300);
 #define LOGO_RECYCLE_HEIGHT       57
 
 #define TEXT_BANNER_X     60
-#define TEXT_BANNER_Y     13
+#define TEXT_BANNER_Y     20
 
 #define COLOR_GREY                0x5269
 #define COLOR_COMMON_TRASH        0x3480
@@ -152,6 +153,7 @@ void setup(void) {
   tft.begin();
   tft.setRotation(1);
   // Reset Screen to black
+  tft.setFont(&FreeMonoBoldOblique12pt7b);
   tft.fillScreen(ILI9341_BLACK);
 
   // Draw wifi icon
@@ -228,28 +230,28 @@ void banner_message(phase_t phase)
     case CHOICE_M:
       tft.setCursor(TEXT_BANNER_X, TEXT_BANNER_Y);
       tft.setTextColor(ILI9341_WHITE);
-      tft.setTextSize(3);
+      tft.setTextSize(1);
       tft.print("Choose a bin");
       break;
 
     case CONNECT_M:
       tft.setCursor(TEXT_BANNER_X, TEXT_BANNER_Y);
       tft.setTextColor(ILI9341_WHITE);
-      tft.setTextSize(3);
+      tft.setTextSize(1);
       tft.print("Connecting...");
       break;
 
     case TRASH_M:
       tft.setCursor(TEXT_BANNER_X, TEXT_BANNER_Y);
       tft.setTextColor(ILI9341_WHITE);
-      tft.setTextSize(3);
+      tft.setTextSize(1);
       tft.print("Go to trash !");
       break;
 
     case RECYCLE_M:
       tft.setCursor(TEXT_BANNER_X, TEXT_BANNER_Y);
       tft.setTextColor(ILI9341_WHITE);
-      tft.setTextSize(3);
+      tft.setTextSize(1);
       tft.print("Recycle !");
       break;
 
@@ -257,7 +259,7 @@ void banner_message(phase_t phase)
     default:
       tft.setCursor(TEXT_BANNER_X, TEXT_BANNER_Y);
       tft.setTextColor(ILI9341_WHITE);  
-      tft.setTextSize(3);
+      tft.setTextSize(1);
       tft.print("Wait...");
       break;
   }
