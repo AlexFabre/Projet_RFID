@@ -109,6 +109,23 @@ void setup(void) {
 
 void loop()
 {
+  button_e button_pressed = get_button_pressed();
+
+  if(button_pressed == RECYCLE_BUTTON) {
+    banner_message(RECYCLE_M);
+  }
+  else if(button_pressed == TRASH_BUTTON){
+    banner_message(TRASH_M);
+  }
+  else if(button_pressed == NONE) {
+    banner_message(CHOICE_M);
+  }
+    
+  // Go to sleep
+  
+}
+
+button_e get_button_pressed() {
   button_t button_pressed = NONE;
   // Retrieve a point  
   TSPoint p = ts.getPoint();
@@ -116,7 +133,7 @@ void loop()
   // we have some minimum pressure we consider 'valid'
   // pressure of 0 means no pressing!
   if (p.z < MINPRESSURE || p.z > MAXPRESSURE) {
-     return;
+     button_pressed = NONE;
   }
   
   // Scale from ~0->1000 to tft.width using the calibration #'s
@@ -139,18 +156,7 @@ void loop()
     button_pressed = NONE;
   }
 
-  if(button_pressed == RECYCLE_BUTTON) {
-    banner_message(RECYCLE_M);
-  }
-  else if(button_pressed == TRASH_BUTTON){
-    banner_message(TRASH_M);
-  }
-  else if(button_pressed == NONE) {
-    banner_message(CHOICE_M);
-  }
-    
-  // Go to sleep
-  
+  return button_pressed;
 }
 
 void clear_banner()
